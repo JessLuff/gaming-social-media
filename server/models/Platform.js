@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const platformSchema = new Schema(
     {
-        unitname: {
+        platformname: {
           type: String,
           required: true,
           unique: true,

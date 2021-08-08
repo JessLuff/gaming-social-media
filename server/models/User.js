@@ -24,16 +24,37 @@ const userSchema = new Schema(
     },
     firstname: {
       type: String,
-      required: true,
+      //required: true,
     },
     lastname: {
       type: String,
-      required: true,
+      //required: true,
     },
     dob: {
       type: Date,
-      required: true
+      //required: true
     },
+    playplatform: [
+      {
+        platform_id: {
+          type: Schema.Types.ObjectId,
+          ref: 'Platform',
+          required: true
+        },
+        friend_code: {
+          type: String,
+          required: true
+        },
+      },
+    ],
+    playgame: [
+      {
+        play_id: {
+          type: Schema.Types.ObjectId,
+          ref: 'Play',
+        },
+      },
+    ],
 
     //REGION ADD
 

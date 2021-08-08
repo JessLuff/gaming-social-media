@@ -10,6 +10,7 @@ const gameSchema = new Schema(
         },
 
         // PLATFORM IDS?
+        // later add multiplayer/single player to exclude from search
 
       },
       // set this to use virtual below

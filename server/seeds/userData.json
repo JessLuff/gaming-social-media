@@ -1,0 +1,66 @@
+[
+  {
+    "username": "JLuff",
+    "email": "jluff@email.com",
+    "password": "password01",
+    "firstname": "Jess",
+    "lastname": "Luff",
+    "dob": "1994-10-31"
+  },
+  {
+    "username": "MTemp",
+    "email": "mtempf@email.com",
+    "password": "password01",
+    "firstname": "Mary",
+    "lastname": "Temp",
+    "dob": "1993-07-01"
+  },
+  {
+    "username": "SallyR",
+    "email": "SallyR@email.com",
+    "password": "password01",
+    "firstname": "Sally",
+    "lastname": "Right",
+    "dob": "1982-03-26"
+  },
+  {
+    "username": "PeterM",
+    "email": "peterm@email.com",
+    "password": "password01",
+    "firstname": "Peter",
+    "lastname": "Mall",
+    "dob": "1999-10-05"
+  },
+  {
+    "username": "DanniT",
+    "email": "dannit@email.com",
+    "password": "password01",
+    "firstname": "Dannielle",
+    "lastname": "Tope",
+    "dob": "1992-12-06"
+  },
+  {
+    "username": "TaylorS",
+    "email": "taylors@email.com",
+    "password": "password01",
+    "firstname": "Taylor",
+    "lastname": "Swift",
+    "dob": "1998-03-05"
+  },
+  {
+    "username": "MaxL",
+    "email": "maxl@email.com",
+    "password": "password01",
+    "firstname": "Max",
+    "lastname": "Lore",
+    "dob": "1994-07-23"
+  },
+  {
+    "username": "HenryG",
+    "email": "henryg@email.com",
+    "password": "password01",
+    "firstname": "Henry",
+    "lastname": "Graff",
+    "dob": "1976-03-09"
+  }
+]
