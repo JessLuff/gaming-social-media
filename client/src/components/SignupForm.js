@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', firstname: '', lastname:'', dob: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -46,6 +46,9 @@ const SignupForm = () => {
       username: '',
       email: '',
       password: '',
+      firstname: '',
+      lastname: '',
+      dob: ''
     });
   };
 
@@ -96,8 +99,48 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='firstname'>First Name</Form.Label>
+          <Form.Control
+            type='firstname'
+            placeholder='Your first name'
+            name='firstname'
+            onChange={handleInputChange}
+            value={userFormData.firstname}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>First name is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='lastname'>Last Name</Form.Label>
+          <Form.Control
+            type='lastname'
+            placeholder='Your last name'
+            name='lastname'
+            onChange={handleInputChange}
+            value={userFormData.lastname}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Last name is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='dob'>Date of Birth (YYYY-MM-DD)</Form.Label>
+          <Form.Control
+            type='dob'
+            placeholder='Your DOB'
+            name='dob'
+            onChange={handleInputChange}
+            value={userFormData.dob}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Date of Birth is required!</Form.Control.Feedback>
+        </Form.Group>
+
         <Button
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.firstname && userFormData.lastname && userFormData.dob)}
           type='submit'
           variant='success'>
           Submit
