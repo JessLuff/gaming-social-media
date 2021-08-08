@@ -15,7 +15,7 @@ db.once('open', async () => {
 
   const games = await Game.insertMany(gameData);
   const platforms = await Platform.insertMany(platformData);
-  const users = await User.insertMany(userData);
+  const users = await User.create(userData);
   
   for (let i=0; i < playData.length; i++){
     gIndex = playData[i].game_id;
@@ -29,16 +29,12 @@ db.once('open', async () => {
 
   const plays = await Play.find();
 
-  for (let i=0; i < userData.length; i++){
+  for (let i=0; i < userplayData.length; i++){
 
     for (let j=0; j < userplayData[i].playplatform.length; j++){
       pIndex = userplayData[i].playplatform[j].platform_id;
-      gIndex = userplayData[i].playgame[j];
-      console.log(pIndex);
-      console.log(gIndex);
       friend_code = userplayData[i].playplatform[j].friend_code;
       platform_id = platforms[pIndex-1]._id;
-      play_id = plays[gIndex-1]._id;
       user_id = users[i]._id;
       const userp = await User.findOneAndUpdate(
         { _id: user_id },
@@ -48,8 +44,12 @@ db.once('open', async () => {
             
           },
         }
-
       );
+
+    }
+    for (let k=0; k < userplayData[i].playgame.length; k++){
+      gIndex = userplayData[i].playgame[k];
+      play_id = plays[gIndex-1]._id;
       const userg = await User.findOneAndUpdate(
         { _id: user_id },
         {
@@ -57,9 +57,7 @@ db.once('open', async () => {
             playgame: {play_id},
           }
         },
-
       );
-
     }
 
   }
