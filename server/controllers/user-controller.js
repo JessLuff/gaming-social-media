@@ -7,7 +7,8 @@ module.exports = {
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
     const foundUser = await User.findOne({
-      $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
+      where: {id: params.id},
+      //$or: [{ _id: user ? user._id : params.id }, { username: params.username }],
     }).populate('playplatform.platform_id');
 
     if (!foundUser) {
@@ -16,6 +17,18 @@ module.exports = {
 
     res.json(foundUser);
   },
+
+  async getUsers(req, res) {
+    const foundUsers = await User.find({ })
+      .populate('playgame.play_id');     //'playgame.play_id').populate('game_id.title');;
+
+    if (!foundUsers) {
+      return res.status(400).json({ message: 'Cannot find users!' });
+    }
+
+    res.json(foundUsers);
+  },
+  
   // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
   async createUser({ body }, res) {
     const user = await User.create(body);
@@ -42,32 +55,5 @@ module.exports = {
     const token = signToken(user);
     res.json({ token, user });
   },
-  // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
-  // user comes from `req.user` created in the auth middleware function
-  async saveTeam({ user, body }, res) {
-    console.log(user);
-    try {
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { Team: body } },
-        { new: true, runValidators: true }
-      );
-      return res.json(updatedUser);
-    } catch (err) {
-      console.log(err);
-      return res.status(400).json(err);
-    }
-  },
-  // remove a book from `savedBooks`
-  async deleteTeam({ user, params }, res) {
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: user._id },
-      { $pull: { savedTeam: { teamId: params.teamId } } },
-      { new: true }
-    );
-    if (!updatedUser) {
-      return res.status(404).json({ message: "Couldn't find user with this id!" });
-    }
-    return res.json(updatedUser);
-  },
+
 };

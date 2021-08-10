@@ -8,7 +8,24 @@ export const getMe = (token) => {
   });
 };
 
+export const getUser = (token, params) => {
 
+  return fetch('/api/users/:id', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const getUsers = (token) => {
+  return fetch('/api/users/all', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 export const createUser = (userData) => {
   return fetch('/api/users', {

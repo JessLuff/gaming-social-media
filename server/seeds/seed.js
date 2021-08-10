@@ -49,7 +49,7 @@ db.once('open', async () => {
     }
     for (let k=0; k < userplayData[i].playgame.length; k++){
       gIndex = userplayData[i].playgame[k];
-      play_id = plays[gIndex-1]._id;
+      play_id = plays[gIndex-1].game_id;
       const userg = await User.findOneAndUpdate(
         { _id: user_id },
         {

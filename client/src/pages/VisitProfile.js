@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, getUserPlatforms } from '../utils/API';
+import { getUser } from '../utils/API';
 import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
 
 const Profile = () => {
+  //const { username: userParam } = useParams();
   const [userData, setUserData] = useState({});
-  const [platformData, setPlatformData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
@@ -19,7 +18,7 @@ const Profile = () => {
         if (!token) {
           return false;
         }
-        const response = await getMe(token);
+        const response = await getUser(token, this.params);
         if (!response.ok) {
           throw new Error('something went wrong!');
         }
@@ -30,30 +29,9 @@ const Profile = () => {
       }
     };
 
-    /*
-    const getPlatformData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-        if (!token) {
-          return false;
-        }
-        const response = await getUserPlatforms(token);
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-        const user = await response.json();
-        setPlatformData(user);
-      } catch (err) {
-        console.error(err);
-      }
-    };*/
-
     getUserData();
-    //getPlatformData();
-
 
   }, [userDataLength]);
-
 
   // if data isn't here yet, say so
   if (!userDataLength) {
