@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', firstname: '', lastname:'', dob: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', firstname: '', lastname:'', dob: '', platform_id: '', platform_friend_code: '', game_id: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -48,7 +48,10 @@ const SignupForm = () => {
       password: '',
       firstname: '',
       lastname: '',
-      dob: ''
+      dob: '',
+      platform_id: '',
+      platform_friend_code: '',
+      game_id: ''
     });
   };
 
@@ -139,8 +142,47 @@ const SignupForm = () => {
           <Form.Control.Feedback type='invalid'>Date of Birth is required!</Form.Control.Feedback>
         </Form.Group>
 
+        <Form.Group>
+          <Form.Label htmlFor='platform_id'>Platform</Form.Label>
+          <Form.Control
+            type='platform_id'
+            placeholder='Platform'
+            name='platform_id'
+            onChange={handleInputChange}
+            value={userFormData.platform_id}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>At least one gaming platform is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='platform_friend_code'>Friend Code</Form.Label>
+          <Form.Control
+            type='platform_friend_code'
+            placeholder='Your Friend Code for this Platform'
+            name='platform_friend_code'
+            onChange={handleInputChange}
+            value={userFormData.platform_friend_code}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Your platform friend code is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='game_id'>Game</Form.Label>
+          <Form.Control
+            type='game_id'
+            placeholder='A game you play'
+            name='game_id'
+            onChange={handleInputChange}
+            value={userFormData.game_id}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>A game is required!</Form.Control.Feedback>
+        </Form.Group>
+
         <Button
-          disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.firstname && userFormData.lastname && userFormData.dob)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.firstname && userFormData.lastname && userFormData.dob && userFormData.platform_id && userFormData.platform_friend_code && userFormData.game_id)}
           type='submit'
           variant='success'>
           Submit

@@ -7,9 +7,9 @@ module.exports = {
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
     const foundUser = await User.findOne({
-      where: {id: params.id},
-      //$or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('playplatform.platform_id');
+      //where: {id: params.id},
+      $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
+    });//.populate('playplatform.platform_id');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -19,8 +19,8 @@ module.exports = {
   },
 
   async getUsers(req, res) {
-    const foundUsers = await User.find({ })
-      .populate('playgame.play_id');     //'playgame.play_id').populate('game_id.title');;
+    const foundUsers = await User.find({ });
+      //.populate('playgame.play_id');     //'playgame.play_id').populate('game_id.title');;
 
     if (!foundUsers) {
       return res.status(400).json({ message: 'Cannot find users!' });

@@ -34,7 +34,7 @@ db.once('open', async () => {
     for (let j=0; j < userplayData[i].playplatform.length; j++){
       pIndex = userplayData[i].playplatform[j].platform_id;
       friend_code = userplayData[i].playplatform[j].friend_code;
-      platform_id = platforms[pIndex-1]._id;
+      platform_id = platforms[pIndex-1].platformname;
       user_id = users[i]._id;
       const userp = await User.findOneAndUpdate(
         { _id: user_id },
@@ -49,12 +49,16 @@ db.once('open', async () => {
     }
     for (let k=0; k < userplayData[i].playgame.length; k++){
       gIndex = userplayData[i].playgame[k];
-      play_id = plays[gIndex-1].game_id;
+      g_id = playData[gIndex-1].game_id;
+      game_id = games[g_id-1].title;
+      //console.log(play_id);
+      
+      
       const userg = await User.findOneAndUpdate(
         { _id: user_id },
         {
           $addToSet: {
-            playgame: {play_id},
+            playgame: {game_id},
           }
         },
       );

@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar class="navbar" bg='info' variant='light' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             Gaming Social Media

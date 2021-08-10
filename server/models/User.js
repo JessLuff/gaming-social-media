@@ -37,8 +37,7 @@ const userSchema = new Schema(
     playplatform: [
       {
         platform_id: {
-          type: Schema.Types.ObjectId,
-          ref: 'Platform',
+          type: String,
           required: true
         },
         friend_code: {
@@ -49,9 +48,8 @@ const userSchema = new Schema(
     ],
     playgame: [
       {
-        play_id: {
-          type: Schema.Types.ObjectId,
-          ref: 'Game',
+        game_id: {
+          type: String
         },
       },
     ],

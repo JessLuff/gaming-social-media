@@ -35,7 +35,7 @@ const Profile = () => {
 
   // if data isn't here yet, say so
   if (!userDataLength) {
-    return <h2>LOADING...</h2>;
+    return <h2 class="text-center">Please login or sign up to continue.</h2>;
   }
 
   return (
@@ -46,15 +46,17 @@ const Profile = () => {
         </Container>
       </Jumbotron>
       <Container>
-        
-        <p>{userData.firstname} {userData.lastname}</p>
+        <h5>First name: {userData.firstname}</h5>
+        <h5>Last name: {userData.lastname}</h5>
+        <h5>Email: {userData.email}</h5>
+
         
         <CardColumns>
           {userData.playplatform.map((platform) => {
             return (
-              <Card key={platform.platformname} border='dark'>
+              <Card key={platform.platform_id} border='dark'>
                 <Card.Body>
-                  <Card.Title>{platform.platform_id.platformname}</Card.Title>
+                  <Card.Title>{platform.platform_id}</Card.Title>
                   <Card.Text>{platform.friend_code}</Card.Text>
                 </Card.Body>
               </Card>

@@ -38,14 +38,14 @@ const Dashboard = () => {
 
   // if data isn't here yet, say so
   if (!userDataLength) {
-    return <h2>Sign in to begin seraching for teammates!</h2>;
+    return <h2 class="text-center">Sign in to begin searching for teammates!</h2>;
   }
 
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Users looking for teammates</h1>
+          <h1 class="text-center">Gamers looking for teammates!</h1>
         </Container>
       </Jumbotron>
       <Container>
@@ -64,13 +64,24 @@ const Dashboard = () => {
 
                   {user.playgame.map((playgame) => {
                     return(
-                      <li className="game-list" key ={playgame.play_id.title}>
-                        {playgame.play_id.title}
+                      <li className="game-list" key ={playgame.game_id}>
+                        {playgame.game_id}
 
 
                       </li>
                     );
                   })}
+                  <h5>Add Me On:</h5>
+                  {user.playplatform.map((playplatform) => {
+                    return(
+                      <p className="platform-list" key ={playplatform.platform_id}>
+                        {playplatform.platform_id}: {playplatform.friend_code}
+
+
+                      </p>
+                    );
+                  })}
+
                   
                   
                 </Card.Body>
